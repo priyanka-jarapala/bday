@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🎂 Happy Birthday Daddy!</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            height: 100dvh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            padding-bottom: 80px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            overflow-y: auto;
+        }
+        .slide.active { opacity: 1; pointer-events: all; }
+
+        .slide:nth-child(1) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .slide:nth-child(2) { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .slide:nth-child(3) { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .slide:nth-child(4) { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+
+        /* Nav */
+        .nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        .nav-btn {
+            padding: 10px 22px;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: #fff;
+            color: #764ba2;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+        .nav-btn:active { transform: scale(0.95); }
+        .dots { display: flex; gap: 6px; }
+        .dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            transition: all 0.3s;
+        }
+        .dot.active { background: #fff; transform: scale(1.4); }
+
+        /* Hero */
+        .cake { font-size: 5rem; animation: pulse 1.5s ease infinite; }
+        .hero-title {
+            font-size: 2.2rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: bounce 1s ease infinite;
+            margin: 10px 0;
+        }
+        .hero-sub { font-size: 1.2rem; color: #fff; margin-top: 8px; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 18px;
+            padding: 22px;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            margin-bottom: 15px;
+        }
+        .card .emoji { font-size: 2.5rem; margin-bottom: 8px; }
+        .card p { color: #333; font-size: 1.05rem; line-height: 1.5; }
+        .card .name { color: #764ba2; font-weight: bold; margin-top: 10px; font-size: 1rem; }
+
+        /* Video */
+        .video-box {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .video-box video { width: 100%; display: block; }
+
+        /* Final */
+        .heart { font-size: 3.5rem; animation: heartbeat 1.2s ease infinite; }
+        .final-title { font-size: 1.8rem; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); margin: 10px 0; }
+        .final-text { color: #fff; font-size: 1.1rem; margin: 8px 0; max-width: 400px; }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 8px; height: 8px;
+            top: -10px;
+            animation: fall linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Opening -->
+    <div class="slide active">
+        <div class="cake">🎂</div>
+        <h1 class="hero-title">Happy Birthday Daddy!</h1>
+        <p class="hero-sub">🎈 Daddy open this slowly okay? 🎈</p>
+        <p class="hero-sub">We made this for you! 🥹</p>
+    </div>
+
+    <!-- Slide 2: Akshara's message + video -->
+    <div class="slide">
+        <div class="card">
+            <div class="emoji">👧</div>
+            <p>Daddy you know why I love you so much? Because you buy me everything I ask! 🛍️ You help me in everything, even small small things. When I have any problem, you just fix it like magic! ✨ You never say no to me daddy. You are my everything! 🥺💕</p>
+            <div class="name">— Akshara 💕</div>
+        </div>
+        <div class="video-box">
+            <video controls playsinline>
+                <source src="videos/akshara.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- Slide 3: Arjun's message + video -->
+    <div class="slide">
+        <div class="card">
+            <div class="emoji">👦</div>
+            <p>Daddy you always help me in studies even when you are tired! 📚 You give me your favourite food also without even thinking! 🍗 You help everyone in our home. You are the strongest pillar of our family daddy! 💪 You are too kind and I'm so lucky you are my dad! 🥹</p>
+            <div class="name">— Arjun 🏆</div>
+        </div>
+        <div class="video-box">
+            <video controls playsinline>
+                <source src="videos/arjun.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- Slide 4: Final -->
+    <div class="slide">
+        <div class="heart">❤️</div>
+        <h2 class="final-title">We Love You More Than WiFi! 📶</h2>
+        <p class="final-text">...and daddy that is A LOT okay! 😄</p>
+        <p class="final-text">Thank you for everything daddy. For playing with us, for buying us ice cream, for being our best friend. You are the best gift God gave us! 🥺</p>
+        <p style="font-size: 2rem; margin-top: 15px;">🎁🎈🎂🥳🎊</p>
+        <p class="final-text" style="margin-top: 20px; font-style: italic; opacity: 0.9;">
+            P.S. We ate little bit of your cake already... sorry daddy! 🍰😇
+        </p>
+        <p class="final-text" style="margin-top: 10px;">
+            <strong>— Akshara & Arjun 💕🏆</strong>
+        </p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <button class="nav-btn" id="prevBtn" onclick="go(-1)">⬅️ Back</button>
+        <div class="dots" id="dots"></div>
+        <button class="nav-btn" id="nextBtn" onclick="go(1)">Next ➡️</button>
+    </div>
+
+    <script>
+        let cur = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        const dotsEl = document.getElementById('dots');
+
+        for (let i = 0; i < total; i++) {
+            const d = document.createElement('div');
+            d.className = 'dot' + (i === 0 ? ' active' : '');
+            dotsEl.appendChild(d);
+        }
+
+        function go(dir) {
+            const next = cur + dir;
+            if (next < 0 || next >= total) return;
+            slides[cur].classList.remove('active');
+            dotsEl.children[cur].classList.remove('active');
+            cur = next;
+            slides[cur].classList.add('active');
+            dotsEl.children[cur].classList.add('active');
+            document.querySelectorAll('video').forEach(v => v.pause());
+            document.getElementById('prevBtn').style.visibility = cur === 0 ? 'hidden' : 'visible';
+            document.getElementById('nextBtn').style.visibility = cur === total - 1 ? 'hidden' : 'visible';
+        }
+
+        document.getElementById('prevBtn').style.visibility = 'hidden';
+
+        // Swipe
+        let sx = 0;
+        document.addEventListener('touchstart', e => sx = e.touches[0].clientX);
+        document.addEventListener('touchend', e => {
+            const diff = sx - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) go(diff > 0 ? 1 : -1);
+        });
+
+        // Confetti
+        const colors = ['#ff6b6b','#feca57','#48dbfb','#ff9ff3','#54a0ff','#f368e0'];
+        for (let i = 0; i < 30; i++) {
+            const c = document.createElement('div');
+            c.className = 'confetti';
+            c.style.left = Math.random() * 100 + 'vw';
+            c.style.background = colors[Math.floor(Math.random() * colors.length)];
+            c.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            c.style.animationDelay = Math.random() * 4 + 's';
+            c.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            document.body.appendChild(c);
+        }
+    </script>
+</body>
+</html>
